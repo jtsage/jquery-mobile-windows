@@ -1,4 +1,4 @@
-jQuery-Mobile-SimpleDialog
+jQuery-Mobile-Windows
 ==========================
 
 SimpleDialog is a replacement for javascript dialog()

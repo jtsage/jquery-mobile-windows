@@ -1,4 +1,4 @@
-jQuery-Mobile-SimpleDialog
+jQuery-Mobile-Windows
 ==========================
 
 Misc test files, for development.

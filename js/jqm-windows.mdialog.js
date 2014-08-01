@@ -55,9 +55,10 @@
 		
 		if ( o.popOverlay !== false ) { basePop.attr('data-overlay-theme', o.popOverlay); }
 		
-		if ( o.popAutoPad === true && o.content !== false ) {
-			if ( o.content.search('<') === -1 || o.useMenuMode == true ) {
+		if ( o.popAutoPad === true && o.content !== false) {
+			if ( o.content.search('<') === -1 ) {
 				basePop.attr('class', 'ui-content'); 
+				o.content = "<p>" + o.content + "</p>";
 			}
 		}
 		
@@ -91,9 +92,9 @@
 				o.content = o.content + '<p>' + o.subTitle + '</p>';
 			}
 
-			if ( o.inputList !== false ) {
+			if ( o.menuInputList !== false ) {
 				o.content = o.content + '<div style="padding-bottom:1em;">';
-				$.each(o.inputList, function(index, value) {
+				$.each(o.menuInputList, function(index, value) {
 					o.content = o.content +	"<input type='"+(("type" in value)?value.type:"text")+"' id='"+value.id+"' placeholder='"+value.title+"' />";
 				});
 				o.content = o.content + '</div>';
@@ -166,7 +167,7 @@
 			props = $.extend({
 				text   : name,
 				id     : name + self.internalID,
-				theme  : o.buttonDefaultTheme,
+				theme  : o.menuButtonTheme,
 				icon   : 'check',
 				iconpos: 'left',
 				corners: 'true',

@@ -1,0 +1,7 @@
+jqver: "2.1.1"
+jqmver: "1.4.3"
+cdn: "http://cdn.jtsage.com/windows/dev/"
+highlighter: pygments
+markdown: kramdown
+permalink: pretty
+basesite: "http://dev.jtsage.com/jQM-Windows/"
