@@ -1,4 +1,7 @@
-jQuery-Mobile-SimpleDialog
-==========================
+jQuery-Mobile-Windows
+=====================
 
-Master SimpleDialog script file. All development happens here.
+All script development here.
+
+ - **SimpleDialog2** : jquery.mobile.simpledialog2.js
+ - **SimpleDialog** : jquery.mobile.simpledialog.js
