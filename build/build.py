@@ -36,7 +36,7 @@ for ifile in infile:
 	f.close();
 	if ( options.verbose ): 
 		print ' -- Compressing...'
-	comp = sp.check_output(javapath.rstrip() + ' -jar ../external/yuicompressor-2.4.6.jar ' + ifile, shell=True);
+	comp = sp.check_output(javapath.rstrip() + ' -jar ../external/yuicompressor-2.4.8.jar ' + ifile, shell=True);
 	if ( options.verbose ): 
 		print '  - In Size:  ' + str(len(uncomp)) + ' bytes'
 		print '  - Out Size: ' + str(len(comp)) + ' bytes'
