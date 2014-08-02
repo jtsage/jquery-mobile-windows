@@ -21,7 +21,7 @@ Menu mode also includes a provision for input elements.  This shows this working
 			menuSubtitle: 'Pick one, eh?',
 			menuMinWidth: '300px',
 			menuInputList: [
-				{'id': 'firstIN', 'title':'An Input #1', 'type':'text'},
+				{'id': 'firstIN', 'title':'An Input #1', 'type':'text', 'value':'xxx'},
 				{'id': 'secondIN', 'title':'An Input #2', 'type':'text'}
 			],
 			callbackClose: function(inputA, inputB) { 
@@ -31,9 +31,12 @@ Menu mode also includes a provision for input elements.  This shows this working
 			},
 			buttons: {
 				'OK': {
-					click: function () { 
+					click: function (e,a,b) { 
 						window.stopper = false;
-						alert('You clicked OK');
+						str = "You Clicked OK\n" +
+							"Input ID:" + a[0] + " set to: " + a[1] + "\n" +
+							"Input ID:" + b[0] + " set to: " + b[1] + "\n";
+						alert(str);
 					}
 				},
 				'Cancel': {
@@ -58,7 +61,7 @@ $('<div>').mdialog({
   menuSubtitle: 'Pick one, eh?',
   menuMinWidth: '300px',
   menuInputList: [
-    {'id': 'firstIN', 'title':'An Input #1', 'type':'text'},
+    {'id': 'firstIN', 'title':'An Input #1', 'type':'text', 'value':'xxx'},
     {'id': 'secondIN', 'title':'An Input #2', 'type':'text'}
   ],
   callbackClose: function(inputA, inputB) { 
@@ -68,9 +71,12 @@ $('<div>').mdialog({
   },
   buttons: {
     'OK': {
-      click: function () { 
+      click: function (e,a,b) { 
         window.stopper = false;
-        alert('You clicked OK');
+        str = "You Clicked OK\n" +
+          "Input ID:" + a[0] + " set to: " + a[1] + "\n" +
+          "Input ID:" + b[0] + " set to: " + b[1] + "\n";
+        alert(str);
       }
     },
     'Cancel': {

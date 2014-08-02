@@ -22,7 +22,7 @@
 		popAutoPad: true,
 		
 		transition: 'pop',
-		clickEvent: 'vclick',
+		clickEvent: 'click',
 		
 		content: false,
 		
@@ -97,7 +97,7 @@
 				o.content = o.content + '<div style="padding-bottom:1em;">';
 				funcs.inputs = [];
 				$.each(o.menuInputList, function(index, value) {
-					o.content = o.content +	"<input type='"+(("type" in value)?value.type:"text")+"' id='"+value.id+"' placeholder='"+value.title+"' />";
+					o.content = o.content +	"<input "+(("value" in value)?"value='"+value.value+"'":"")+" type='"+(("type" in value)?value.type:"text")+"' id='"+value.id+"' placeholder='"+value.title+"' />";
 				});
 				
 				o.content = o.content + '</div>';
