@@ -41,7 +41,7 @@
 		{% endif %}
 		<li><a href="#toc" data-icon="grid">Contents</a></li>
 		
-		{% if nextPage >= lastPage %}
+		{% if nextPage > lastPage %}
 			<li><a href="#" data-icon="delete">--</a></li>
 		{% else %}
 			{% assign cnt = 0 %}
