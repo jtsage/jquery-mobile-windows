@@ -74,6 +74,7 @@
 				o.content = '<a href="#" data-rel="back" data-role="button" data-theme="'+o.closeButtonTheme+'" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>' + o.content;
 			}
 		} else {
+			o.content = "";
 			// BUTTON mode basics
 			if ( o.closeButton === "left" ) {
 				o.content = '<a href="#" data-rel="back" data-role="button" data-theme="'+o.closeButtonTheme+'" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>';
@@ -88,15 +89,17 @@
 			}
 			o.content = o.content + '<div data-role="content">';
 			
-			if ( o.subTitle !== false && o.menuButtonType === 'button' ) {
-				o.content = o.content + '<p>' + o.subTitle + '</p>';
+			if ( o.menuSubtitle !== false && o.menuButtonType === 'button' ) {
+				o.content = o.content + '<p>' + o.menuSubtitle + '</p>';
 			}
 
 			if ( o.menuInputList !== false ) {
 				o.content = o.content + '<div style="padding-bottom:1em;">';
+				funcs.inputs = [];
 				$.each(o.menuInputList, function(index, value) {
 					o.content = o.content +	"<input type='"+(("type" in value)?value.type:"text")+"' id='"+value.id+"' placeholder='"+value.title+"' />";
 				});
+				
 				o.content = o.content + '</div>';
 			}
 
@@ -115,8 +118,8 @@
 		
 		$.extend(self, {basePop: basePop});
 
-		if ( o.displayMode === 'button' ) {
-			if ( o.buttonMode === 'list' ) {
+		if ( o.useMenuMode === true ) {
+			if ( o.menuButtonType === 'list' ) {
 				self._makeListButtons(basePop);
 			} else {
 				self._makeButtonButtons(basePop);
@@ -125,6 +128,14 @@
 		
 		funcs.clean = function () { basePop.remove(); self.destroy(); }
 		
+		funcs.getinput = function() {
+			if ( o.menuInputList !== false && o.useMenuMode === true ) {
+				$.each(o.menuInputList, function(index, value) {
+					o.callbackCloseArgs.push([value.id, $('#'+value.id).val()]);
+				});
+			}
+		}
+		
 		if ( $.isFunction(o.callbackOpen) ) {
 			funcs.open = function() { o.callbackOpen.apply(self, o.callbackOpenArgs); }
 		} else {
@@ -132,7 +143,11 @@
 		}
 		
 		if ( $.isFunction(o.callbackClose) ) {
-			funcs.close = function() { o.callbackClose.apply(self, o.callbackCloseArgs); funcs.clean.apply(self); }
+			if ( o.menuInputList !== false && o.useMenuMode === true ) {
+				funcs.close = function() { funcs.getinput.apply(self); o.callbackClose.apply(self, o.callbackCloseArgs); funcs.clean.apply(self); }
+			} else {
+				funcs.close = function() { o.callbackClose.apply(self, o.callbackCloseArgs); funcs.clean.apply(self); }
+			}
 		} else {
 			funcs.close = function() { funcs.clean.apply(self); }
 		}
@@ -154,6 +169,17 @@
 		});
 		
 		basePop.popup('open', funcs.openext);
+	},
+	_appendInput: function(start) {
+		var self = this,
+			o = this.options;
+			
+		if ( o.menuInputList !== false && o.useMenuMode === true ) {
+			$.each(o.menuInputList, function(index, value) {
+				start.push([value.id, $('#'+value.id).val()]);
+			});
+		}
+		return start;
 	},
 	_makeButtonButtons: function (basePop) {
 		var self = this,
@@ -187,6 +213,7 @@
 					shadow : props.shadow
 				}).unbind("vclick click")
 				.bind(o.clickEvent, function() {
+					props.args = self._appendInput(props.args);
 					var returnValue = props.click.apply(self, $.merge(arguments, props.args));
 					if ( returnValue !== false && props.close === true ) {
 						basePop.popup('close');
@@ -205,7 +232,7 @@
 		self.butObj = [];
 		
 		if ( o.subTitle !== false ) {
-			$("<li data-role='list-divider'>"+o.subTitle+"</li>").appendTo(thisNode)
+			$("<li data-role='list-divider'>"+o.menuSubtitle+"</li>").appendTo(thisNode)
 		}
 		
 		$.each(o.buttons, function(name, props) {
@@ -221,6 +248,7 @@
 			self.butObj.push($("<li id='"+props.id+"' data-icon='"+props.icon+"'><a href='#'>"+props.text+"</a></li>")
 				.appendTo(thisNode)
 				.bind(o.clickEvent, function() {
+					props.args = self._appendInput(props.args);
 					var returnValue = props.click.apply(self, $.merge(arguments, props.args));
 					if ( returnValue !== false && props.close === true ) {
 						basePop.popup('close');

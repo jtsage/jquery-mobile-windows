@@ -5,11 +5,55 @@
 	<div data-role="panel" data-display="overlay" id="toc">
 	<ul data-role='listview'>
 		<li data-role="list-divider">Contents</li>
+		<li data-theme="b" data-role="list-divider">mDialog</li>
+		{% for docu in site.pages %}
+		{% if docu.layout == "mdialog" %}
+			<li><a href="{{site.basesite}}{{docu.url | replace_first: "/"}}">{{docu.title}}</a></li>
+		{% endif %}
+		{% endfor %}
 	</ul>
 	</div>
 	<div data-role="header" data-position="fixed">
-		<h1>jQMDateBox - {{ page.title }}</h1>
+		<h1>jQM-Windows-mDialog - {{ page.title }}</h1>
 	</div>
+	<div data-role="navbar"><ul>
+		{% assign cnt = 0 %}
+		{% for docu in site.pages %}
+			{% if docu.title == page.title %}
+				{% assign thisPage = cnt %}
+			{% endif %}
+			{% assign cnt = cnt | plus: 1 %}
+		{% endfor %}
+		{% assign lastPage = cnt | minus: 1 %}
+		{% assign nextPage = thisPage | plus: 1 %}
+		{% assign prevPage = thisPage | minus: 1 %}
+		
+		{% if thisPage < 1 %}
+			<li><a href="#" data-icon="delete">--</a></li>
+		{% else %}
+			{% assign cnt = 0 %}
+			{% for docu in site.pages %}
+				{% if cnt == prevPage %}
+				<li><a data-icon="arrow-l" href="{{site.basesite}}{{docu.url | replace_first: "/"}}">{{docu.title}}</a></li>
+				{% endif %}
+				{% assign cnt = cnt | plus: 1 %}
+			{% endfor %}
+		{% endif %}
+		<li><a href="#toc" data-icon="grid">Contents</a></li>
+		
+		{% if nextPage >= lastPage %}
+			<li><a href="#" data-icon="delete">--</a></li>
+		{% else %}
+			{% assign cnt = 0 %}
+			{% for docu in site.pages %}
+				{% if cnt == nextPage %}
+				<li><a data-icon="arrow-r" href="{{site.basesite}}{{docu.url | replace_first: "/"}}">{{docu.title}}</a></li>
+				{% endif %}
+				{% assign cnt = cnt | plus: 1 %}
+			{% endfor %}
+		{% endif %}
+		
+	</ul></div>
 	
 <div data-role="content">
 {{ content }}

@@ -3,7 +3,9 @@ title: mDialog Bare Mode
 layout: mdialog
 ---
 
-# Bare Text
+# mDialog
+
+## Bare Text
 
 In it's simplest mode, mDialog simply pops up some text. Here, we pop up "Some text".
 
@@ -25,7 +27,7 @@ $('<div>').mdialog({
 });
 {% endhighlight %}
 
-# HTML
+## HTML
 
 Of course, this is not terribly useful.  So, how bout we do the same with some HTML?
 
@@ -40,4 +42,12 @@ Of course, this is not terribly useful.  So, how bout we do the same with some H
 		});
 	});
 </script>
+
+{% highlight js %}
+$('<div>').mdialog({
+  closeButton: 'right',
+  content: 
+    "<div data-role='header'><h1>Antigonish</h1></div><div data-role='content'><p>Yesterday, upon the stair,<br />I met a man who wasn't there<br />He wasn't there again today<br />I wish, I wish he'd go away...</p></div>"
+});
+{% endhighlight %}
 
