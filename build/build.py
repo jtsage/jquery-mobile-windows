@@ -17,6 +17,7 @@ javapath = sp.check_output(["which", "java"]);
 
 infile = [
 	'../js/jqm-windows.mdialog.js',
+	'../js/jqm-windows.alertbox.js',
 ]
 files = {}
 
