@@ -8,10 +8,10 @@
 (function($, undefined ) {
   $.widget( "mobile.alertbox", $.mobile.widget, {
 	options: {
-		version: '1.4.3-2014080200', // jQueryMobile-YrMoDaySerial
+		version: "1.4.3-2014080200", // jQueryMobile-YrMoDaySerial
 		closeTime: 5000,
-		positionTo: 'window',
-		transition: 'pop',
+		positionTo: "window",
+		transition: "pop",
 		dismissible: true,
 	},
 	_mrclose: function () { 
@@ -25,8 +25,13 @@
 		self.basePop = this.element;
 		self.closer = false;
 		
-		basePop.popup({'transition':o.transition, 'dismissible': o.dismissible, 'positionTo':o.positionTo, history: false});
-		basePop.on('popupafterclose', function () { self._mrclose.apply(self); });
+		basePop.popup({
+			transition:o.transition,
+			dismissible: o.dismissible,
+			positionTo:o.positionTo,
+			history: false
+		});
+		basePop.on("popupafterclose", function () { self._mrclose.apply(self); });
 		
 		self.open();
 	},
@@ -34,20 +39,17 @@
 		var self = this,
 			o = this.options;
 			
-		self.basePop.popup('open');
+		self.basePop.popup("open");
 		if ( parseInt(o.closeTime,10) > 0 ) {
-			self.closer = setTimeout( $.proxy(function() { this.basePop.popup('close'); },self), o.closeTime);
+			self.closer = setTimeout( 
+				$.proxy(function() { this.basePop.popup("close"); },self), o.closeTime
+			);
 		}
 	},
 	_getLongOptions: function(element) {
-		var key, retty = {},
-			prefix, temp;
-
-		if ($.mobile.ns === "") {
+		var key, temp,
+			retty = {},
 			prefix = "alertbox";
-		} else {
-			prefix = $.mobile.ns.substr(0, $.mobile.ns.length - 1) + 'Alertbox';
-		}
 		
 		for (key in element.data()) {
 			if (key.substr(0, prefix.length) === prefix && key.length > prefix.length) {
@@ -62,11 +64,11 @@
   });
   $(document).on("pageshow", function(e) {
 	$(".jqm-alert-box", e.target).each(function() {
-		var defed = typeof($(this).data(parseInt($.mobile.version.replace(/\./g, ''), 10) > 111 ? 'mobile-alertbox' : 'alertbox'));
+		var defed = typeof $(this).data("mobile-alertbox");
 		if (defed === "undefined") {
-			setTimeout($.proxy(function() {$(this).alertbox()}, this), 250);
+			setTimeout($.proxy(function() {$(this).alertbox();}, this), 250);
 		} else {
-			setTimeout($.proxy(function() {$(this).alertbox('open')}, this), 250);
+			setTimeout($.proxy(function() {$(this).alertbox("open");}, this), 250);
 		}
 	});
   });

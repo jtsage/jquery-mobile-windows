@@ -8,33 +8,33 @@
 (function($, undefined ) {
   $.widget( "mobile.mdialog", $.mobile.widget, {
 	options: {
-		version: '1.4.3-201408010', // jQueryMobile-YrMoDaySerial
+		version: "1.4.3-201408010", // jQueryMobile-YrMoDaySerial
 		
 		useMenuMode: false,
 		
 		containerTheme: false,
 		
-		popOverlay: 'b',
+		popOverlay: "b",
 		popDismissable: true,
-		popPosition: 'window',
+		popPosition: "window",
 		popPosX: false,
 		popPosY: false,
 		popAutoPad: true,
 		
-		transition: 'pop',
-		clickEvent: 'click',
+		transition: "pop",
+		clickEvent: "click",
 		
 		content: false,
 		
 		closeButton: false,
-		closeButtonTheme: 'a',
+		closeButtonTheme: "a",
 		
 		menuHeaderText: false,
-		menuHeaderTheme: 'a',
+		menuHeaderTheme: "a",
 		menuMinWidth: false,
 		menuSubtitle: false,
-		menuButtonType: 'list',
-		menuButtonTheme: 'a',
+		menuButtonType: "list",
+		menuButtonTheme: "a",
 		menuInputList: false,
 		
 		// Gotta love some callbacks!
@@ -46,18 +46,19 @@
 	_create: function () {
 		var self = this,
 			o = this.options,
-			basePop = $('<div data-role="popup"></div>'), gennyPop, funcs = {},
-			gennyPage = $('<div data-role="page"></div>');
+			basePop = $("<div data-role='popup'></div>"), 
+			funcs = {},
+			gennyPage = $("<div data-role='page'></div>");
 			
 		self.internalID = new Date().getTime();
 		
-		if ( o.containerTheme !== false ) { basePop.attr('data-theme', o.containerTheme); }
+		if ( o.containerTheme !== false ) { basePop.attr("data-theme", o.containerTheme); }
 		
-		if ( o.popOverlay !== false ) { basePop.attr('data-overlay-theme', o.popOverlay); }
+		if ( o.popOverlay !== false ) { basePop.attr("data-overlay-theme", o.popOverlay); }
 		
 		if ( o.popAutoPad === true && o.content !== false) {
-			if ( o.content.search('<') === -1 ) {
-				basePop.attr('class', 'ui-content'); 
+			if ( o.content.search("<") === -1 ) {
+				basePop.attr("class", "ui-content"); 
 				o.content = "<p>" + o.content + "</p>";
 			}
 		}
@@ -68,42 +69,54 @@
 		if ( o.useMenuMode === false ) {
 			// BLANK mode
 			if ( o.closeButton === "left" ) {
-				o.content = '<a href="#" data-rel="back" data-role="button" data-theme="'+o.closeButtonTheme+'" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>' + o.content;
+				o.content = "<a href='#' data-rel='back' data-role='button' data-theme='" + 
+					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
+					" class='ui-btn-left'>Close</a>" + o.content;
 			}
 			if ( o.closeButton === "right" ) {
-				o.content = '<a href="#" data-rel="back" data-role="button" data-theme="'+o.closeButtonTheme+'" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>' + o.content;
+				o.content = "<a href='#' data-rel='back' data-role='button' data-theme='" + 
+					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
+					" class='ui-btn-right'>Close</a>" + o.content;
 			}
 		} else {
 			o.content = "";
 			// BUTTON mode basics
 			if ( o.closeButton === "left" ) {
-				o.content = '<a href="#" data-rel="back" data-role="button" data-theme="'+o.closeButtonTheme+'" data-icon="delete" data-iconpos="notext" class="ui-btn-left">Close</a>';
+				o.content = "<a href='#' data-rel='back' data-role='button' data-theme='" + 
+					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
+					" class='ui-btn-left'>Close</a>";
 			}
 			if ( o.closeButton === "right" ) {
-				o.content = '<a href="#" data-rel="back" data-role="button" data-theme="'+o.closeButtonTheme+'" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>';
+				o.content = "<a href='#' data-rel='back' data-role='button' data-theme='" + 
+					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
+					" class='ui-btn-right'>Close</a>";
 			}
 			if ( o.menuHeaderText !== false ) {
-				o.content = o.content + '<div data-role="header" data-theme="' + o.menuHeaderTheme + '"' +
-					((o.menuMinWidth !== false) ? ' style="min-width: ' + o.menuMinWidth + '"' : '') +
+				o.content = o.content + "<div data-role='header' data-theme='" + o.menuHeaderTheme +
+					"'" +
+					((o.menuMinWidth !== false) ? " style='min-width: " + o.menuMinWidth + "'":"") +
 					"><h1>" + o.menuHeaderText + "</h1></div>";
 			}
-			o.content = o.content + '<div data-role="content">';
+			o.content = o.content + "<div data-role='content'>";
 			
-			if ( o.menuSubtitle !== false && o.menuButtonType === 'button' ) {
-				o.content = o.content + '<p>' + o.menuSubtitle + '</p>';
+			if ( o.menuSubtitle !== false && o.menuButtonType === "button" ) {
+				o.content = o.content + "<p>" + o.menuSubtitle + "</p>";
 			}
 
 			if ( o.menuInputList !== false ) {
-				o.content = o.content + '<div style="padding-bottom:1em;">';
+				o.content = o.content + "<div style='padding-bottom:1em;'>";
 				funcs.inputs = [];
 				$.each(o.menuInputList, function(index, value) {
-					o.content = o.content +	"<input "+(("value" in value)?"value='"+value.value+"'":"")+" type='"+(("type" in value)?value.type:"text")+"' id='"+value.id+"' placeholder='"+value.title+"' />";
+					o.content = o.content + "<input " + 
+						(("value" in value)?"value='" + value.value + "'":"") +
+						" type='" + (("type" in value) ? value.type : "text") +
+						"' id='" + value.id + "' placeholder='" + value.title + "' />";
 				});
 				
-				o.content = o.content + '</div>';
+				o.content = o.content + "</div>";
 			}
 
-			o.content = o.content + '<div class="popupbuttonshere"></div></div>';
+			o.content = o.content + "<div class='popupbuttonshere'></div></div>";
 		}
 		
 		// The rationale behind this: Things do not always generate properly
@@ -111,45 +124,52 @@
 		// then I pluck it back off there and drop it in the popup.  And of 
 		// course clean up the leavings.
 		$(o.content).appendTo(gennyPage);//.trigger('create');
-		gennyPage.appendTo('body').page().trigger('create');
+		gennyPage.appendTo("body").page().enhanceWithin();
 		basePop.append(gennyPage.children());
 		gennyPage.remove();
-		basePop.appendTo($('.ui-page-active'));
+		basePop.appendTo($(".ui-page-active"));
 		
 		$.extend(self, {basePop: basePop});
 
 		if ( o.useMenuMode === true ) {
-			if ( o.menuButtonType === 'list' ) {
+			if ( o.menuButtonType === "list" ) {
 				self._makeListButtons(basePop);
 			} else {
 				self._makeButtonButtons(basePop);
 			}
 		}
 		
-		funcs.clean = function () { basePop.remove(); self.destroy(); }
+		funcs.clean = function () { basePop.remove(); self.destroy(); };
 		
 		funcs.getinput = function() {
 			if ( o.menuInputList !== false && o.useMenuMode === true ) {
 				$.each(o.menuInputList, function(index, value) {
-					o.callbackCloseArgs.push([value.id, $('#'+value.id).val()]);
+					o.callbackCloseArgs.push([value.id, $("#" + value.id).val()]);
 				});
 			}
-		}
+		};
 		
 		if ( $.isFunction(o.callbackOpen) ) {
-			funcs.open = function() { o.callbackOpen.apply(self, o.callbackOpenArgs); }
+			funcs.open = function() { o.callbackOpen.apply(self, o.callbackOpenArgs); };
 		} else {
 			funcs.open = false;
 		}
 		
 		if ( $.isFunction(o.callbackClose) ) {
 			if ( o.menuInputList !== false && o.useMenuMode === true ) {
-				funcs.close = function() { funcs.getinput.apply(self); o.callbackClose.apply(self, o.callbackCloseArgs); funcs.clean.apply(self); }
+				funcs.close = function() { 
+					funcs.getinput.apply(self);
+					o.callbackClose.apply(self, o.callbackCloseArgs);
+					funcs.clean.apply(self);
+				};
 			} else {
-				funcs.close = function() { o.callbackClose.apply(self, o.callbackCloseArgs); funcs.clean.apply(self); }
+				funcs.close = function() {
+					o.callbackClose.apply(self, o.callbackCloseArgs);
+					funcs.clean.apply(self);
+				};
 			}
 		} else {
-			funcs.close = function() { funcs.clean.apply(self); }
+			funcs.close = function() { funcs.clean.apply(self); };
 		}
 		
 		funcs.openext = {};
@@ -161,22 +181,21 @@
 		}
 		
 		basePop.popup({
-			'transition':o.transition,
-			'dismissible': o.popDismissable,
-			'positionTo':o.positionTo,
-			'afteropen': funcs.open,
-			'afterclose': funcs.close
+			transition:o.transition,
+			dismissible: o.popDismissable,
+			positionTo:o.positionTo,
+			afteropen: funcs.open,
+			afterclose: funcs.close
 		});
 		
-		basePop.popup('open', funcs.openext);
+		basePop.popup("open", funcs.openext);
 	},
 	_appendInput: function(start) {
-		var self = this,
-			o = this.options;
+		var o = this.options;
 			
 		if ( o.menuInputList !== false && o.useMenuMode === true ) {
 			$.each(o.menuInputList, function(index, value) {
-				start.push([value.id, $('#'+value.id).val()]);
+				start.push([value.id, $( "#" + value.id ).val()]);
 			});
 		}
 		return start;
@@ -184,7 +203,7 @@
 	_makeButtonButtons: function (basePop) {
 		var self = this,
 			o = self.options,
-			thisNode = basePop.find('.popupbuttonshere');
+			thisNode = basePop.find(".popupbuttonshere");
 		
 		self.butObj = [];
 		
@@ -194,17 +213,17 @@
 				text   : name,
 				id     : name + self.internalID,
 				theme  : o.menuButtonTheme,
-				icon   : 'check',
-				iconpos: 'left',
-				corners: 'true',
-				shadow : 'true',
+				icon   : "check",
+				iconpos: "left",
+				corners: true,
+				shadow : true,
 				args   : [],
 				close  : true
 			}, props);
 			
 			self.butObj.push($("<a href='#'>"+props.text+"</a>")
 				.appendTo(thisNode)
-				.attr('id', props.id)
+				.attr("id", props.id)
 				.buttonMarkup({
 					theme  : props.theme,
 					icon   : props.icon,
@@ -216,7 +235,7 @@
 					props.args = self._appendInput(props.args);
 					var returnValue = props.click.apply(self, $.merge(arguments, props.args));
 					if ( returnValue !== false && props.close === true ) {
-						basePop.popup('close');
+						basePop.popup("close");
 					}
 				})
 			);
@@ -225,14 +244,15 @@
 	_makeListButtons: function (basePop) {
 		var self = this,
 			o = self.options,
-			thisParentNode = basePop.find('.popupbuttonshere'),
-			thisNode = $('<ul data-role="listview"></ul>'),
-			gennyPage = $('<div data-role="page"><div id="tempcontent" data-role="content"></div></div>');
+			thisParentNode = basePop.find(".popupbuttonshere"),
+			thisNode = $("<ul data-role='listview'></ul>"),
+			gennyPage = $("<div data-role='page'><div id='tempcontent' data-role='content'>" +
+				"</div></div>");
 		
 		self.butObj = [];
 		
 		if ( o.subTitle !== false ) {
-			$("<li data-role='list-divider'>"+o.menuSubtitle+"</li>").appendTo(thisNode)
+			$("<li data-role='list-divider'>"+o.menuSubtitle+"</li>").appendTo(thisNode);
 		}
 		
 		$.each(o.buttons, function(name, props) {
@@ -240,26 +260,27 @@
 			props = $.extend({
 				text   : name,
 				id     : name + self.internalID,
-				icon   : 'check',
+				icon   : "check",
 				args   : [],
 				close  : true
 			}, props);
 			
-			self.butObj.push($("<li id='"+props.id+"' data-icon='"+props.icon+"'><a href='#'>"+props.text+"</a></li>")
+			self.butObj.push($("<li id='" + props.id + "' data-icon='" + props.icon +
+					"'><a href='#'>" + props.text + "</a></li>" )
 				.appendTo(thisNode)
 				.bind(o.clickEvent, function() {
 					props.args = self._appendInput(props.args);
 					var returnValue = props.click.apply(self, $.merge(arguments, props.args));
 					if ( returnValue !== false && props.close === true ) {
-						basePop.popup('close');
+						basePop.popup("close");
 					}
 				})
 			);
 		});
 		
-		thisNode.appendTo(gennyPage.find('#tempcontent'));
-		gennyPage.appendTo('body').page().trigger('create');
-		thisParentNode.append(gennyPage.find('#tempcontent').children());
+		thisNode.appendTo(gennyPage.find("#tempcontent"));
+		gennyPage.appendTo("body").page().trigger("create");
+		thisParentNode.append(gennyPage.find("#tempcontent").children());
 		gennyPage.remove();
 	}
   });
