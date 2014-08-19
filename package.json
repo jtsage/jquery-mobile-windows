@@ -1,0 +1,25 @@
+{
+  "name": "jquery-mobile-windows",
+  "title": "jQuery Mobile Windows",
+  "description": "jQM Plugins to provide windowing methods  (dialog() and alert())",
+  "version": "1.4.3",
+  "homepage": "http://dev.jtsage.com/jQM-Windows/",
+  "author": {
+    "name": "JTSage and other contributors",
+    "url": "https://github.com/jtsage/jquery-mobile-windows/blob/master/AUTHORS.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jtsage/jquery-mobile-windows.git"
+  },
+  "bugs": "https://github.com/jtsage/jquery-mobile-windows/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jtsage/jquery-mobile-datebox/blob/master/LICENSE.txt"
+    }
+  ],
+  "devDependencies": {
+  },
+  "dependencies": {}
+}
