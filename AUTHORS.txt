@@ -1,0 +1,11 @@
+78  J.T.Sage <jtsage+tdtrac@gmail.com>
+16  JTSage <jtsage+datebox@gmail.com>
+13  J.T. Sage <jtsage+github@gmail.com>
+4   Adam George <github@adamgeorge.com>
+4   Fabrizio Minuti <fminuti@MacBook-Pro-di-Fabrizio.local>
+2   hakanson <kevin@thehakansons.com>
+1   Drew Dara-Abrams <dda@dara-abrams.com>
+1   George Mauer <georgemauer@ubuntu.ubuntu-domain>
+1   Giorgos Logiotatidis <seadog@sealabs.net>
+1   Raimund Bauer <ray007@gmx.net>
+1   Rob Aldred <raldred@gmail.com>

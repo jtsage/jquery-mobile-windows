@@ -43,57 +43,140 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		clean: {
+			latest: ["dist/latest/"],
+			release: ["dist/<%= pkg.version %>/"],
+		},
+		concat: {
+			options: {
+				stripBanners: true,
+				banner: "<%= txt.banner.long %>",
+			},
+			lat_alert: {
+				src: [
+					"build/wrap.begin",
+					"js/jqm-windows.alertbox.js",
+					"build/wrap.end",
+				],
+				dest: "dist/latest/jqm-windows.alertbox.js"
+			},
+			lat_mdialog: {
+				src: [
+					"build/wrap.begin",
+					"js/jqm-windows.mdialog.js",
+					"build/wrap.end",
+				],
+				dest: "dist/latest/jqm-windows.mdialog.js"
+			},
+			ver_alert: {
+				src: [
+					"build/wrap.begin",
+					"js/jqm-windows.alertbox.js",
+					"build/wrap.end",
+				],
+				dest: "dist/<%= pkg.version %>/jqm-windows-<%= pkg.version %>.alertbox.js"
+			},
+			ver_mdialog: {
+				src: [
+					"build/wrap.begin",
+					"js/jqm-windows.mdialog.js",
+					"build/wrap.end",
+				],
+				dest: "dist/<%= pkg.version %>/jqm-windows-<%= pkg.version %>.mdialog.js"
+			},
+		},
+		uglify: {
+			options: {
+				banner: "<%= txt.banner.short %>",
+				verbose: true
+			},
+			release: {
+				files: [ {
+					expand: true,
+					src: ["dist/<%= pkg.version %>/*.js"],
+					dest: "",
+					ext: ".min.js",
+					extDot: "last" 
+				} ]
+			},
+			latest: {
+				files: [ {
+					expand: true,
+					src: ["dist/latest/*.js"],
+					dest: "",
+					ext: ".min.js",
+					extDot: "last" 
+				} ]
+			}
+		},
+		committers: {
+			options: {
+				sort: "commits",
+				email: true,
+				nomerges: true,
+			}
+		},
+		jekyll: {
+			options: {
+				src : "docs/",
+				dest: "docs/_site"
+			},
+			release: {
+				options: {
+					config: "docs/_config.yml"
+				}
+			}
+		},
+		prettify: {
+			options: {
+				// Task-specific options go here.
+			},
+			all: {
+				expand: true,
+				cwd: "docs/_site/",
+				ext: ".html",
+				src: ["**/*.html"],
+				dest: "docs/_site/"
+			},
+		},
+		htmllint: {
+			all: ["docs/_site/**/*.html"]
+		}
 	});
 	
 	grunt.loadNpmTasks( "grunt-contrib-jshint" );
-	//grunt.loadNpmTasks( "grunt-contrib-concat" );
-	//grunt.loadNpmTasks( "grunt-contrib-clean" );
+	grunt.loadNpmTasks( "grunt-contrib-concat" );
+	grunt.loadNpmTasks( "grunt-contrib-clean" );
+	grunt.loadNpmTasks( "grunt-contrib-uglify" );
+	grunt.loadNpmTasks( "grunt-git-committers" );
+	grunt.loadNpmTasks( "grunt-jekyll" );
+	grunt.loadNpmTasks( "grunt-prettify" );
+	grunt.loadNpmTasks( "grunt-html" );
 	
-	//grunt.loadNpmTasks( "grunt-contrib-uglify" );
-	
-	//grunt.loadNpmTasks( "grunt-git-committers" );
-	//grunt.loadNpmTasks( "grunt-jekyll" );
-	//grunt.loadNpmTasks( "grunt-contrib-watch" );
-	//grunt.loadNpmTasks( "grunt-prettify" );
-	//grunt.loadNpmTasks( "grunt-html" );
-	
-	/*grunt.registerTask( "release", "Build a release version of DateBox", [
-		"jshint_sane",
-		"qunit",
+	grunt.registerTask( "release", "Build a release version of jQM-Windows", [
+		"jshint",
 		"clean:release",
-		"concat:ver_main",
-		"concat:ver_extra",
-		"concat:ver_comp_datebox",
-		"concat:ver_comp_calbox",
-		"concat:ver_comp_flipbox",
-		"concat:ver_comp_slidebox",
-		"concat:ver_comp_customflip",
-		"copy:release",
-		"copy:release_css",
+		"concat:ver_alert",
+		"concat:ver_mdialog",
 		"uglify:release",
-		"cssmin:release",
 		"committers",
-		"copy:backreq",
 		"jekyll:release",
 		"prettify",
 	] );
 	
-	grunt.registerTask( "latest", "Build a working version of DateBox (no testing)", [
+	grunt.registerTask( "latest", "Build a working version of jQM-Windows (no testing)", [
 		"clean:latest",
-		"concat:lat_main",
-		"concat:lat_amd",
-		"copy:latest",
-		"copy:latest_css",
+		"concat:lat_alert",
+		"concat:lat_mdialog",
 		"uglify:latest",
-		"cssmin:latest",
-	]);*/
+	]);
 	
 
 	grunt.registerTask( "web", "Build the documentation site", ["jekyll:release", "prettify"] );
-	grunt.registerTask( "devweb", "Test the documentation site", ["jekyll:latest", "prettify"] );
-	grunt.registerTask( "test", "Test the DateBox Suite", ["jshint"] );
+	grunt.registerTask( "test", "Test the jQM-Windows Suite", ["jshint"] );
 
 	grunt.registerTask( "default", "Test and Build working version", [
 		"jshint",
+		"latest",
 	] );
-}
+};

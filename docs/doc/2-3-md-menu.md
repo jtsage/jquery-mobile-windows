@@ -10,28 +10,28 @@ layout: mdialog
 
 This controls whether to use the menu mode.
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li><em>false</em></li></ul>
 
 ## menuHeaderText
 
 If set to non-false, this text will be used for the header string.
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li><em>false</em></li></ul>
 
 ## menuHeaderTheme
 
 With above, this is the theme for the header to use.
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li>"a"</li></ul>
 
 ## menuMinWidth
 
 If you wish to make sure you popup is of a minimum width, and you are using menuHeaderText, you can set this to any valid css string.
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li><em>false</em></li></ul>
 
 ## menuSubtitle
@@ -40,21 +40,21 @@ When set to non-false, this will be a second string under menuHeaderText.  For "
 
 This will appear below inputs.
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li><em>false</em></li></ul>
 
 ## menuButtonType
 
 The style of buttons to use, either "list" or "button"
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li>"list"</li></ul>
 
 ## menuButtonTheme
 
 The default theme for the buttons or list items.
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li>"a"</li></ul>
 		
 ## menuInputList
@@ -77,14 +77,14 @@ menuInputList: [
 Note that these are supplied to both the "click" function for each button and the 
 callbackClose function as array pairs of [&lt;element ID>, &lt;element Value>]
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li><em>false</em></li></ul>
 
 ## clickEvent
 
 This is the click event that is listened for on the buttons.  'click' or 'vclick' are the usual options.
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li>'click'</li></ul>
 
 

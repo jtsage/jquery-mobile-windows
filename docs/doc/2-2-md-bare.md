@@ -16,6 +16,6 @@ width, you need to supply it.
 
 When passed content that does not contain any HTML, this will pad it out with a &lt;p> element and some extra css padding.
 
-<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider" theme="b">Default Value</li>
+<ul data-role="listview" data-inset="true" data-divider-theme="b"><li data-role="list-divider">Default Value</li>
 	<li><em>true</em></li></ul>
 
