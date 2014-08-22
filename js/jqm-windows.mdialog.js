@@ -46,9 +46,9 @@
 	_create: function () {
 		var self = this,
 			o = this.options,
-			basePop = $("<div data-role='popup'></div>"), 
 			funcs = {},
-			gennyPage = $("<div data-role='page'></div>");
+			theme = $.mobile.getInheritedTheme( ".ui-active-page" ),
+			basePop = $("<div data-role='popup' data-theme='" + theme + "'></div>");
 			
 		self.internalID = new Date().getTime();
 		
@@ -119,15 +119,7 @@
 			o.content = o.content + "<div class='popupbuttonshere'></div></div>";
 		}
 		
-		// The rationale behind this: Things do not always generate properly
-		// if they aren't on a page.  So, I made a page, I generated everything,
-		// then I pluck it back off there and drop it in the popup.  And of 
-		// course clean up the leavings.
-		$(o.content).appendTo(gennyPage);//.trigger('create');
-		gennyPage.appendTo("body").page().enhanceWithin();
-		basePop.append(gennyPage.children());
-		gennyPage.remove();
-		basePop.appendTo($(".ui-page-active"));
+		$(o.content).appendTo(basePop).enhanceWithin();
 		
 		$.extend(self, {basePop: basePop});
 
@@ -245,9 +237,7 @@
 		var self = this,
 			o = self.options,
 			thisParentNode = basePop.find(".popupbuttonshere"),
-			thisNode = $("<ul data-role='listview'></ul>"),
-			gennyPage = $("<div data-role='page'><div id='tempcontent' data-role='content'>" +
-				"</div></div>");
+			thisNode = $("<ul data-role='listview'></ul>");
 		
 		self.butObj = [];
 		
@@ -278,10 +268,7 @@
 			);
 		});
 		
-		thisNode.appendTo(gennyPage.find("#tempcontent"));
-		gennyPage.appendTo("body").page().trigger("create");
-		thisParentNode.append(gennyPage.find("#tempcontent").children());
-		gennyPage.remove();
+		thisNode.listview().appendTo(thisParentNode);
 	}
   });
 })( jQuery );
