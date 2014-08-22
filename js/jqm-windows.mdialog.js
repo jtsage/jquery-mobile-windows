@@ -172,6 +172,8 @@
 			funcs.openext.y = o.popPosY;
 		}
 		
+		basePop.enhanceWithin();
+		
 		basePop.popup({
 			transition:o.transition,
 			dismissible: o.popDismissable,
