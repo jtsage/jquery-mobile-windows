@@ -69,12 +69,12 @@
 		if ( o.useMenuMode === false ) {
 			// BLANK mode
 			if ( o.closeButton === "left" ) {
-				o.content = "<a href='#' data-rel='back' data-role='button' data-theme='" + 
+				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button' data-theme='" + 
 					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
 					" class='ui-btn-left'>Close</a>" + o.content;
 			}
 			if ( o.closeButton === "right" ) {
-				o.content = "<a href='#' data-rel='back' data-role='button' data-theme='" + 
+				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button' data-theme='" + 
 					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
 					" class='ui-btn-right'>Close</a>" + o.content;
 			}
@@ -82,12 +82,12 @@
 			o.content = "";
 			// BUTTON mode basics
 			if ( o.closeButton === "left" ) {
-				o.content = "<a href='#' data-rel='back' data-role='button' data-theme='" + 
+				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button' data-theme='" + 
 					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
 					" class='ui-btn-left'>Close</a>";
 			}
 			if ( o.closeButton === "right" ) {
-				o.content = "<a href='#' data-rel='back' data-role='button' data-theme='" + 
+				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button' data-theme='" + 
 					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
 					" class='ui-btn-right'>Close</a>";
 			}
@@ -215,7 +215,7 @@
 				close  : true
 			}, props);
 			
-			self.butObj.push($("<a href='#'>"+props.text+"</a>")
+			self.butObj.push($("<a href='javascript:void(0);'>"+props.text+"</a>")
 				.appendTo(thisNode)
 				.attr("id", props.id)
 				.buttonMarkup({
@@ -258,7 +258,7 @@
 			}, props);
 			
 			self.butObj.push($("<li id='" + props.id + "' data-icon='" + props.icon +
-					"'><a href='#'>" + props.text + "</a></li>" )
+					"'><a href='javascript:void(0);'>" + props.text + "</a></li>" )
 				.appendTo(thisNode)
 				.bind(o.clickEvent, function() {
 					props.args = self._appendInput(props.args);
@@ -274,4 +274,3 @@
 	}
   });
 })( jQuery );
-
