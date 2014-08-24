@@ -69,26 +69,30 @@
 		if ( o.useMenuMode === false ) {
 			// BLANK mode
 			if ( o.closeButton === "left" ) {
-				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button' data-theme='" + 
-					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
+				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button'" +
+					" data-theme='" + o.closeButtonTheme + 
+					"' data-icon='delete' data-iconpos='notext' " +
 					" class='ui-btn-left'>Close</a>" + o.content;
 			}
 			if ( o.closeButton === "right" ) {
-				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button' data-theme='" + 
-					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
+				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button'" + 
+					" data-theme='" + o.closeButtonTheme + 
+					"' data-icon='delete' data-iconpos='notext' " +
 					" class='ui-btn-right'>Close</a>" + o.content;
 			}
 		} else {
 			o.content = "";
 			// BUTTON mode basics
 			if ( o.closeButton === "left" ) {
-				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button' data-theme='" + 
-					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
+				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button'" + 
+					" data-theme='" + o.closeButtonTheme +
+					"' data-icon='delete' data-iconpos='notext' " +
 					" class='ui-btn-left'>Close</a>";
 			}
 			if ( o.closeButton === "right" ) {
-				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button' data-theme='" + 
-					o.closeButtonTheme + "' data-icon='delete' data-iconpos='notext' " +
+				o.content = "<a href='javascript:void(0);' data-rel='back' data-role='button'" + 
+					" data-theme='" + o.closeButtonTheme +
+					"' data-icon='delete' data-iconpos='notext' " +
 					" class='ui-btn-right'>Close</a>";
 			}
 			if ( o.menuHeaderText !== false ) {
