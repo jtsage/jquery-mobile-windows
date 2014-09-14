@@ -8,7 +8,7 @@
 (function($, undefined ) {
   $.widget( "mobile.mdialog", $.mobile.widget, {
 	options: {
-		version: "1.4.3-201408010", // jQueryMobile-YrMoDaySerial
+		version: "1.4.4-2014091400", // jQueryMobile-YrMoDaySerial
 		
 		useMenuMode: false,
 		

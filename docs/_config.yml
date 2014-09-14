@@ -1,6 +1,6 @@
 jqver: "2.1.1"
-jqmver: "1.4.3"
-cdn: "http://cdn.jtsage.com/windows/1.4.3/"
+jqmver: "1.4.4"
+cdn: "http://cdn.jtsage.com/windows/1.4.4/"
 highlighter: pygments
 markdown: kramdown
 permalink: pretty

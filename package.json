@@ -2,7 +2,7 @@
   "name": "jquery-mobile-windows",
   "title": "jQuery Mobile Windows",
   "description": "jQM Plugins to provide windowing methods  (dialog() and alert())",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "homepage": "http://dev.jtsage.com/jQM-Windows/",
   "author": {
     "name": "JTSage and other contributors",

@@ -8,7 +8,7 @@
 (function($, undefined ) {
   $.widget( "mobile.alertbox", $.mobile.widget, {
 	options: {
-		version: "1.4.3-2014080200", // jQueryMobile-YrMoDaySerial
+		version: "1.4.4-2014091400", // jQueryMobile-YrMoDaySerial
 		closeTime: 5000,
 		positionTo: "window",
 		transition: "pop",
